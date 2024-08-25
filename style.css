@@ -1,0 +1,289 @@
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --hue: 223;
+  --hue2: 43;
+  --bg: hsl(var(--hue),90%,90%);
+  --fg: hsl(var(--hue),90%,10%);
+  --trans-dur: 0.3s;
+  font-size: calc(14px + (30 - 14) * (100vw - 280px) / (3840 - 280));
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  display: flex;
+  font: 1em/1.5 sans-serif;
+  height: 100vh;
+  transition: background-color var(--trans-dur), color var(--trans-dur);
+}
+
+.pl {
+  margin: auto;
+  position: relative;
+  width: 11em;
+  height: 18em;
+}
+.pl__a, .pl__b, .pl__c {
+  position: absolute;
+  bottom: 0;
+}
+.pl__a, .pl__a:before, .pl__b, .pl__b:before, .pl__c, .pl__c:before {
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+}
+.pl__a:before, .pl__b:before, .pl__c:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pl__b:before, .pl__c:before {
+  border-radius: 50%;
+}
+.pl__a {
+  animation-name: shape-a;
+  left: 2.125em;
+  width: 6.75em;
+  height: 6.75em;
+}
+.pl__a:before {
+  animation-name: shape-a-before;
+  background-color: hsl(var(--hue), 90%, 30%);
+  transform-origin: 50% 100%;
+}
+.pl__b {
+  animation-name: shape-b;
+  bottom: 1.75em;
+  left: 1.75em;
+  width: 3.25em;
+  height: 3.25em;
+  transform: translate(1.75em, -5em);
+}
+.pl__b:before {
+  animation-name: shape-b-before;
+  background-image: linear-gradient(90deg, 
+  hsl(var(--hue2), 90%, 50%) 
+  50%, hsl(var(--hue2), 90%, 30%) 50%);
+  transform: rotate(10deg);
+}
+.pl__c {
+  animation-name: shape-c;
+  left: 1.25em;
+  width: 4.25em;
+  height: 4.25em;
+  transform: translate(1.25em, 0);
+}
+.pl__c:before {
+  animation-name: shape-c-before;
+  background-color: hsl(var(--hue), 90%, 70%);
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: hsl(var(--hue),90%,10%);
+    --fg: hsl(var(--hue),90%,90%);
+  }
+}
+/* Animations */
+@keyframes shape-a {
+  from, 3.75% {
+    transform: translate(0, 0) rotate(0);
+    transform-origin: 0 100%;
+  }
+  7.5% {
+    transform: translate(0, 0) rotate(-7.5deg);
+    transform-origin: 0 100%;
+  }
+  14.99% {
+    transform: translate(0, 0) rotate(0);
+    transform-origin: 0 100%;
+  }
+  15%, 18.75% {
+    transform: translate(0, 0) rotate(0);
+    transform-origin: 100% 100%;
+  }
+  25% {
+    transform: translate(0, 0) rotate(11.25deg);
+    transform-origin: 100% 100%;
+  }
+  34.99% {
+    transform: translate(0, 0) rotate(0);
+    transform-origin: 100% 100%;
+  }
+  35%, 38.75% {
+    transform: translate(0, 0) rotate(0);
+    transform-origin: 0 100%;
+  }
+  47.5% {
+    transform: translate(0, 0) rotate(-15deg);
+    transform-origin: 0 100%;
+  }
+  59.99% {
+    transform: translate(0, 0) rotate(0);
+    transform-origin: 0 100%;
+  }
+  60%, 63.75% {
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+    transform: translate(0, 0) rotate(0);
+    transform-origin: 50% 50%;
+  }
+  74.375% {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: translate(0, -3.375em) rotate(45deg);
+    transform-origin: 50% 50%;
+  }
+  85%, to {
+    transform: translate(0, 0) rotate(90deg);
+    transform-origin: 50% 50%;
+  }
+}
+@keyframes shape-a-before {
+  from {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: scale(1, 1);
+  }
+  3.75% {
+    transform: scale(1.05, 0.95);
+  }
+  7.5%, 15% {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: scale(1, 1);
+  }
+  18.75% {
+    transform: scale(1.05, 0.95);
+  }
+  22.5%, 25% {
+    transform: scale(1, 1);
+  }
+  35% {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: scale(1, 1);
+  }
+  38.75% {
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+    transform: scale(1.05, 0.95);
+  }
+  42.5%, 60% {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: scale(1, 1);
+  }
+  63.75% {
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+    transform: scale(1.05, 0.95);
+  }
+  67.5% {
+    transform: scale(1, 1);
+    transform-origin: 50% 100%;
+  }
+  85% {
+    animation-timing-function: linear;
+    transform: scale(1, 1);
+    transform-origin: 100% 50%;
+  }
+  87.5% {
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+    transform: scale(0.95, 1.05);
+    transform-origin: 100% 50%;
+  }
+  90%, to {
+    transform: scale(1, 1);
+    transform-origin: 100% 50%;
+  }
+}
+@keyframes shape-b {
+  from {
+    transform: rotate(0) translate(0, -5em);
+  }
+  3.75% {
+    transform: rotate(0) translate(0, -4.6625em);
+  }
+  7.5%, 15% {
+    transform: rotate(0) translate(0, -5em);
+  }
+  18.75% {
+    transform: rotate(0) translate(0, -4.6625em);
+  }
+  22.5%, 35% {
+    transform: rotate(0) translate(0, -5em);
+  }
+  38.75% {
+    transform: rotate(0) translate(0, -4.6625em);
+  }
+  42.5%, 60% {
+    transform: rotate(0) translate(0, -5em);
+  }
+  63.75% {
+    transform: rotate(0) translate(0, -4.6625em);
+  }
+  74.375% {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: rotate(-45deg) translate(0, -9.5em);
+  }
+  85% {
+    animation-timing-function: linear;
+    transform: rotate(-90deg) translate(0, -5em);
+  }
+  87.5% {
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+    transform: rotate(-90deg) translate(0, -4.6625em);
+  }
+  90%, to {
+    transform: rotate(-90deg) translate(0, -5em);
+  }
+}
+@keyframes shape-b-before {
+  from, 3.75% {
+    transform: translate(1.75em, 0) rotate(10deg);
+  }
+  15%, 18.75% {
+    transform: translate(-1.75em, 0) rotate(-305deg);
+  }
+  35%, 38.75% {
+    transform: translate(2.75em, 0) rotate(200deg);
+  }
+  60%, 63.75% {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: translate(-2.75em, 0) rotate(-415deg);
+  }
+  85% {
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+    transform: translate(1.5em, 0) rotate(705deg);
+  }
+  95%, to {
+    transform: translate(1.75em, 0) rotate(730deg);
+  }
+}
+@keyframes shape-c {
+  from, 3.75% {
+    transform: translate(1.25em, 0);
+  }
+  15%, 18.75% {
+    transform: translate(-1.25em, 0);
+  }
+  35%, 38.75% {
+    transform: translate(1.25em, 0);
+  }
+  60%, 63.75% {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: translate(-1.25em, 0);
+  }
+  82.5%, to {
+    transform: translate(1.25em, 0);
+  }
+}
+@keyframes shape-c-before {
+  from, 74.375% {
+    transform: translate(0, 0);
+  }
+  90%, to {
+    transform: translate(0, -2.5em);
+  }
+}
